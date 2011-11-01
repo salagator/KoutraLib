@@ -1,5 +1,6 @@
 package com.koutra.koutralib.domain.impl;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.koutra.koutralib.domain.IKClass;
@@ -34,7 +35,11 @@ public class KClass extends KBase implements IKClass {
 
 	@Override
 	public Set<IKPropertyDefn> getKPropertyDefnSet() {
-		return kPropertyDefnSet;
+		Set<IKPropertyDefn> retVal = new HashSet<IKPropertyDefn>(kPropertyDefnSet);
+		if (superKClass != null) {
+			retVal.addAll(superKClass.getKPropertyDefnSet());
+		}
+		return retVal;
 	}
 
 	@Override
@@ -44,7 +49,15 @@ public class KClass extends KBase implements IKClass {
 					"from a class that does not have a property definition set attached.");
 		}
 		
-		return kPropertyDefnSet.contains(kPropertyDefn);
+		if (kPropertyDefnSet.contains(kPropertyDefn)) {
+			return true;
+		}
+		
+		if (superKClass != null) {
+			return superKClass.containsKPropertyDefn(kPropertyDefn);
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -69,6 +82,9 @@ public class KClass extends KBase implements IKClass {
 				return pDefn;
 			}
 		}
+		if (superKClass != null) {
+			return superKClass.getKPropertyDefnById(id);
+		}
 		return null;
 	}
 
@@ -84,6 +100,9 @@ public class KClass extends KBase implements IKClass {
 				return pDefn;
 			}
 		}
+		if (superKClass != null) {
+			return superKClass.getKPropertyDefnByName(name);
+		}
 		return null;
 	}
 
@@ -98,6 +117,9 @@ public class KClass extends KBase implements IKClass {
 			if (pDefn.getType() == type && pDefn.getName().equals(name)) {
 				return pDefn;
 			}
+		}
+		if (superKClass != null) {
+			return superKClass.getKPropertyDefnByNameAndType(name, type);
 		}
 		return null;
 	}
