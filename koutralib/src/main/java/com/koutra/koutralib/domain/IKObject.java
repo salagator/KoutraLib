@@ -10,9 +10,11 @@ import com.koutra.koutralib.domain.IKPropertyDefn.Type;
 public interface IKObject extends IKBase {
 	IKClass getKClass();
 	
-	IKProperty getKProperty(IKPropertyDefn propertyDefn);
+	IKProperty getKProperty(IKPropertyDefn kPropertyDefn);
 	
-	boolean hasKProperty(IKPropertyDefn propertyDefn);
+	void setKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty);
+	
+	boolean hasKProperty(IKPropertyDefn kPropertyDefn);
 	
 	IKProperty getKPropertyById(long id);
 	

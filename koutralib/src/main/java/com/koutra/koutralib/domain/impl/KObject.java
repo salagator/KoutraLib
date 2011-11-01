@@ -11,20 +11,20 @@ import com.koutra.koutralib.domain.IKPropertyDefn.Type;
 
 public class KObject extends KBase implements IKObject {
 	
-	protected KClass kClass;
-	protected Map<Long, KProperty> kPropertyMap;
+	protected IKClass kClass;
+	protected Map<Long, IKProperty> kPropertyMap;
 	
 	public KObject() {
 		this.kClass = null;
-		this.kPropertyMap = new HashMap<Long, KProperty>();
+		this.kPropertyMap = new HashMap<Long, IKProperty>();
 	}
 	
-	public KObject(KClass kClass, Map<Long, KProperty> kPropertyMap) {
+	public KObject(IKClass kClass, Map<Long, IKProperty> kPropertyMap) {
 		this.kClass = kClass;
 		this.kPropertyMap = kPropertyMap;
 	}
 	
-	public KObject(long id, KClass kClass, Map<Long, KProperty> kPropertyMap) {
+	public KObject(long id, IKClass kClass, Map<Long, IKProperty> kPropertyMap) {
 		super(id);
 		this.kClass = kClass;
 		this.kPropertyMap = kPropertyMap;
@@ -38,6 +38,11 @@ public class KObject extends KBase implements IKObject {
 	@Override
 	public IKProperty getKProperty(IKPropertyDefn kPropertyDefn) {
 		return kPropertyMap.get(kPropertyDefn.getId());
+	}
+
+	@Override
+	public void setKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty) {
+		kPropertyMap.put(kPropertyDefn.getId(), kProperty);
 	}
 
 	@Override

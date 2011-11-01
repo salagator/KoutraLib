@@ -18,6 +18,8 @@ public interface IKClass extends IKBase {
 	
 	void attachKPropertyDefn(IKPropertyDefn kPropertyDefn);
 	
+	void detachKPropertyDefn(IKPropertyDefn kPropertyDefn);
+	
 	IKPropertyDefn getKPropertyDefnById(long id);
 	
 	IKPropertyDefn getKPropertyDefnByName(String name);

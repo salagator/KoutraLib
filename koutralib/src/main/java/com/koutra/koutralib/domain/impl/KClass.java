@@ -71,6 +71,21 @@ public class KClass extends KBase implements IKClass {
 	}
 
 	@Override
+	public void detachKPropertyDefn(IKPropertyDefn kPropertyDefn) {
+		if (kPropertyDefnSet == null) {
+			throw new IllegalStateException("Attempting to detach a property defn " +
+					"to a class that does not have a property definition set attached.");
+		}
+		
+		if (!kPropertyDefnSet.contains(kPropertyDefn)) {
+			throw new IllegalArgumentException("Attempting to detach a property defn " +
+					"to a class that does not have that property defn attached.");
+		}
+		
+		kPropertyDefnSet.remove(kPropertyDefn);
+	}
+
+	@Override
 	public IKPropertyDefn getKPropertyDefnById(long id) {
 		if (kPropertyDefnSet == null) {
 			throw new IllegalStateException("Attempting to retrieve a property defn " +
