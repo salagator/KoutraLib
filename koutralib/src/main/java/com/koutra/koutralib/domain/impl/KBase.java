@@ -13,6 +13,10 @@ public abstract class KBase implements IKBase {
 		this.id = id;
 	}
 	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}

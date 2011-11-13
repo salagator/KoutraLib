@@ -11,4 +11,10 @@ public interface IKProperty extends IKBase {
 	IKPropertyDefn getIKPropertyDefn();
 	
 	Object getValue();
+	
+	boolean isPending();
+	
+	boolean isInConflict();
+	
+	IKProperty getIKPropertyOfRecord();
 }

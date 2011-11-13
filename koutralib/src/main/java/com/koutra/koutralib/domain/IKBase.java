@@ -7,6 +7,12 @@ package com.koutra.koutralib.domain;
  */
 public interface IKBase {
 	/**
+	 * Setter for the unique identifier for the KoutraLib entity.
+	 * @param id A long value that uniquely identifies the entity.
+	 */
+	void setId(long id);
+	
+	/**
 	 * Accessor for the unique identifier for the KoutraLib entity. Usually identifiers
 	 * are unique for similar types.
 	 * 
