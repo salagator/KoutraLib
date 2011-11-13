@@ -26,12 +26,12 @@ public abstract class KProperty extends KBase implements IKProperty {
 	}
 
 	@Override
-	public IKObject getKObject() {
+	public IKObject getIKObject() {
 		return kObject;
 	}
 
 	@Override
-	public IKPropertyDefn getKPropertyDefn() {
+	public IKPropertyDefn getIKPropertyDefn() {
 		return kPropertyDefn;
 	}
 

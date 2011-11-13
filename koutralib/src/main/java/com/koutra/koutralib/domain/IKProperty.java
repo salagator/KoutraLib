@@ -6,9 +6,9 @@ package com.koutra.koutralib.domain;
  * @author pftakas
  */
 public interface IKProperty extends IKBase {
-	IKObject getKObject();
+	IKObject getIKObject();
 	
-	IKPropertyDefn getKPropertyDefn();
+	IKPropertyDefn getIKPropertyDefn();
 	
 	Object getValue();
 }

@@ -31,33 +31,38 @@ public class KObject extends KBase implements IKObject {
 	}
 
 	@Override
-	public IKClass getKClass() {
+	public IKClass getIKClass() {
 		return kClass;
 	}
 
 	@Override
-	public IKProperty getKProperty(IKPropertyDefn kPropertyDefn) {
+	public IKProperty getIKProperty(IKPropertyDefn kPropertyDefn) {
 		return kPropertyMap.get(kPropertyDefn.getId());
 	}
 
 	@Override
-	public void setKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty) {
+	public void setIKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty) {
+		if (!hasIKProperty(kPropertyDefn)) {
+			throw new IllegalArgumentException("Attempting to set property '" +
+					kPropertyDefn.getName() +
+					"' for object that does not have it attached.");
+		}
 		kPropertyMap.put(kPropertyDefn.getId(), kProperty);
 	}
 
 	@Override
-	public boolean hasKProperty(IKPropertyDefn kPropertyDefn) {
-		return kClass.containsKPropertyDefn(kPropertyDefn);
+	public boolean hasIKProperty(IKPropertyDefn kPropertyDefn) {
+		return kClass.containsIKPropertyDefn(kPropertyDefn);
 	}
 
 	@Override
-	public IKProperty getKPropertyById(long id) {
+	public IKProperty getIKPropertyById(long id) {
 		return kPropertyMap.get(id);
 	}
 
 	@Override
-	public IKProperty getKPropertyByName(String name) {
-		IKPropertyDefn kPropertyDefn = kClass.getKPropertyDefnByName(name);
+	public IKProperty getIKPropertyByName(String name) {
+		IKPropertyDefn kPropertyDefn = kClass.getIKPropertyDefnByName(name);
 		if (kPropertyDefn == null) {
 			return null;
 		}
@@ -66,8 +71,8 @@ public class KObject extends KBase implements IKObject {
 	}
 
 	@Override
-	public IKProperty getKPropertyByNameAndType(String name, Type type) {
-		IKPropertyDefn kPropertyDefn = kClass.getKPropertyDefnByNameAndType(name, type);
+	public IKProperty getIKPropertyByNameAndType(String name, Type type) {
+		IKPropertyDefn kPropertyDefn = kClass.getIKPropertyDefnByNameAndType(name, type);
 		if (kPropertyDefn == null) {
 			return null;
 		}

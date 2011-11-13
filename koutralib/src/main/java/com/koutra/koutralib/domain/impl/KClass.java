@@ -29,21 +29,21 @@ public class KClass extends KBase implements IKClass {
 	}
 
 	@Override
-	public IKClass getSuperKClass() {
+	public IKClass getSuperIKClass() {
 		return superKClass;
 	}
 
 	@Override
-	public Set<IKPropertyDefn> getKPropertyDefnSet() {
+	public Set<IKPropertyDefn> getIKPropertyDefnSet() {
 		Set<IKPropertyDefn> retVal = new HashSet<IKPropertyDefn>(kPropertyDefnSet);
 		if (superKClass != null) {
-			retVal.addAll(superKClass.getKPropertyDefnSet());
+			retVal.addAll(superKClass.getIKPropertyDefnSet());
 		}
 		return retVal;
 	}
 
 	@Override
-	public boolean containsKPropertyDefn(IKPropertyDefn kPropertyDefn) {
+	public boolean containsIKPropertyDefn(IKPropertyDefn kPropertyDefn) {
 		if (kPropertyDefnSet == null) {
 			throw new IllegalStateException("Attempting to retrieve a property defn " +
 					"from a class that does not have a property definition set attached.");
@@ -54,39 +54,48 @@ public class KClass extends KBase implements IKClass {
 		}
 		
 		if (superKClass != null) {
-			return superKClass.containsKPropertyDefn(kPropertyDefn);
+			return superKClass.containsIKPropertyDefn(kPropertyDefn);
 		}
 		
 		return false;
 	}
 
 	@Override
-	public void attachKPropertyDefn(IKPropertyDefn kPropertyDefn) {
+	public void attachIKPropertyDefn(IKPropertyDefn kPropertyDefn) {
 		if (kPropertyDefnSet == null) {
-			throw new IllegalStateException("Attempting to attach a property defn " +
-					"to a class that does not have a property definition set attached.");
+			throw new IllegalStateException("Attempting to attach a property defn ('" +
+					kPropertyDefn.getName() +
+					"') to a class that does not have a property definition set attached.");
+		}
+		
+		if (kPropertyDefnSet.contains(kPropertyDefn)) {
+			throw new IllegalArgumentException("Attempting to attach a property defn ('" +
+					kPropertyDefn.getName() +
+					"') to a class that has that property defn attached.");
 		}
 		
 		kPropertyDefnSet.add(kPropertyDefn);
 	}
 
 	@Override
-	public void detachKPropertyDefn(IKPropertyDefn kPropertyDefn) {
+	public void detachIKPropertyDefn(IKPropertyDefn kPropertyDefn) {
 		if (kPropertyDefnSet == null) {
-			throw new IllegalStateException("Attempting to detach a property defn " +
-					"to a class that does not have a property definition set attached.");
+			throw new IllegalStateException("Attempting to detach a property defn ('" +
+					kPropertyDefn.getName() +
+					"') to a class that does not have a property definition set attached.");
 		}
 		
 		if (!kPropertyDefnSet.contains(kPropertyDefn)) {
-			throw new IllegalArgumentException("Attempting to detach a property defn " +
-					"to a class that does not have that property defn attached.");
+			throw new IllegalArgumentException("Attempting to detach a property defn ('" +
+					kPropertyDefn.getName() +
+					"') to a class that does not have that property defn attached.");
 		}
 		
 		kPropertyDefnSet.remove(kPropertyDefn);
 	}
 
 	@Override
-	public IKPropertyDefn getKPropertyDefnById(long id) {
+	public IKPropertyDefn getIKPropertyDefnById(long id) {
 		if (kPropertyDefnSet == null) {
 			throw new IllegalStateException("Attempting to retrieve a property defn " +
 					"from a class that does not have a property definition set attached.");
@@ -98,13 +107,13 @@ public class KClass extends KBase implements IKClass {
 			}
 		}
 		if (superKClass != null) {
-			return superKClass.getKPropertyDefnById(id);
+			return superKClass.getIKPropertyDefnById(id);
 		}
 		return null;
 	}
 
 	@Override
-	public IKPropertyDefn getKPropertyDefnByName(String name) {
+	public IKPropertyDefn getIKPropertyDefnByName(String name) {
 		if (kPropertyDefnSet == null) {
 			throw new IllegalStateException("Attempting to retrieve a property defn " +
 					"from a class that does not have a property definition set attached.");
@@ -116,13 +125,13 @@ public class KClass extends KBase implements IKClass {
 			}
 		}
 		if (superKClass != null) {
-			return superKClass.getKPropertyDefnByName(name);
+			return superKClass.getIKPropertyDefnByName(name);
 		}
 		return null;
 	}
 
 	@Override
-	public IKPropertyDefn getKPropertyDefnByNameAndType(String name, Type type) {
+	public IKPropertyDefn getIKPropertyDefnByNameAndType(String name, Type type) {
 		if (kPropertyDefnSet == null) {
 			throw new IllegalStateException("Attempting to retrieve a property defn " +
 					"from a class that does not have a property definition set attached.");
@@ -134,7 +143,7 @@ public class KClass extends KBase implements IKClass {
 			}
 		}
 		if (superKClass != null) {
-			return superKClass.getKPropertyDefnByNameAndType(name, type);
+			return superKClass.getIKPropertyDefnByNameAndType(name, type);
 		}
 		return null;
 	}

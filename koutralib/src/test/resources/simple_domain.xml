@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain>
+	<propDefns>
+		<propDefn id="1" name="name" type="String"/>
+		<propDefn id="2" name="otherProp" type="Integer"/>
+	</propDefns>
+	<classes>
+		<class id="1">
+			<attach propDefnId="1"/>
+		</class>
+		<class id="2" superClassId="1">
+			<attach propDefnId="2"/>
+		</class>
+	</classes>
+	<objects>
+		<object id="1" classId="2">
+			<property id="1" propDefnId="1" value="Hello World!"/>
+			<property id="2" propDefnId="2" value="123"/>
+		</object>
+	</objects>
+</domain>

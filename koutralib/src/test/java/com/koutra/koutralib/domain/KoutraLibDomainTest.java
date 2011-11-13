@@ -32,20 +32,20 @@ public class KoutraLibDomainTest {
 		Set<IKPropertyDefn> kPropertyDefnSet = new HashSet<IKPropertyDefn>();
 		
 		IKClass rootKClass = new KClass(getNextId(), null, kPropertyDefnSet);
-		rootKClass.attachKPropertyDefn(propDefn1);
-		rootKClass.attachKPropertyDefn(propDefn2);
+		rootKClass.attachIKPropertyDefn(propDefn1);
+		rootKClass.attachIKPropertyDefn(propDefn2);
 		
 		IKObject kObject = new KObject(
 				getNextId(), rootKClass, new HashMap<Long, IKProperty>());
 		
-		IKProperty prop1 = kObject.getKProperty(propDefn1);
+		IKProperty prop1 = kObject.getIKProperty(propDefn1);
 		
 		assertNull(prop1);
 		
-		kObject.setKProperty(propDefn1,
+		kObject.setIKProperty(propDefn1,
 				new StringKProperty(getNextId(), kObject, propDefn1, OBJECT_NAME));
 		
-		prop1 = kObject.getKProperty(propDefn1);
+		prop1 = kObject.getIKProperty(propDefn1);
 		
 		assertNotNull(prop1);
 		assertEquals(OBJECT_NAME, prop1.getValue());

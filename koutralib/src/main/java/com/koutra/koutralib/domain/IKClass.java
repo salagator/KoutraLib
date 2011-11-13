@@ -10,19 +10,19 @@ import com.koutra.koutralib.domain.IKPropertyDefn.Type;
  * @author pftakas
  */
 public interface IKClass extends IKBase {
-	IKClass getSuperKClass();
+	IKClass getSuperIKClass();
 	
-	Set<IKPropertyDefn> getKPropertyDefnSet();
+	Set<IKPropertyDefn> getIKPropertyDefnSet();
 	
-	boolean containsKPropertyDefn(IKPropertyDefn kPropertyDefn);
+	boolean containsIKPropertyDefn(IKPropertyDefn kPropertyDefn);
 	
-	void attachKPropertyDefn(IKPropertyDefn kPropertyDefn);
+	void attachIKPropertyDefn(IKPropertyDefn kPropertyDefn);
 	
-	void detachKPropertyDefn(IKPropertyDefn kPropertyDefn);
+	void detachIKPropertyDefn(IKPropertyDefn kPropertyDefn);
 	
-	IKPropertyDefn getKPropertyDefnById(long id);
+	IKPropertyDefn getIKPropertyDefnById(long id);
 	
-	IKPropertyDefn getKPropertyDefnByName(String name);
+	IKPropertyDefn getIKPropertyDefnByName(String name);
 	
-	IKPropertyDefn getKPropertyDefnByNameAndType(String name, Type type);
+	IKPropertyDefn getIKPropertyDefnByNameAndType(String name, Type type);
 }

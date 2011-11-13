@@ -8,17 +8,17 @@ import com.koutra.koutralib.domain.IKPropertyDefn.Type;
  * @author pftakas
  */
 public interface IKObject extends IKBase {
-	IKClass getKClass();
+	IKClass getIKClass();
 	
-	IKProperty getKProperty(IKPropertyDefn kPropertyDefn);
+	IKProperty getIKProperty(IKPropertyDefn kPropertyDefn);
 	
-	void setKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty);
+	void setIKProperty(IKPropertyDefn kPropertyDefn, IKProperty kProperty);
 	
-	boolean hasKProperty(IKPropertyDefn kPropertyDefn);
+	boolean hasIKProperty(IKPropertyDefn kPropertyDefn);
 	
-	IKProperty getKPropertyById(long id);
+	IKProperty getIKPropertyById(long id);
 	
-	IKProperty getKPropertyByName(String name);
+	IKProperty getIKPropertyByName(String name);
 	
-	IKProperty getKPropertyByNameAndType(String name, Type type);
+	IKProperty getIKPropertyByNameAndType(String name, Type type);
 }
